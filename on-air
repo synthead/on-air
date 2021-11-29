@@ -1,0 +1,63 @@
+#!/usr/bin/env ruby
+
+require "twitch-api"
+require "gpio_sysfs"
+require "yaml"
+require "logger"
+
+CONFIG_PATH = "config.yml"
+
+class OnAir
+  attr_accessor :client_id, :client_secret, :user_id, :gpio_pin
+
+  def initialize(client_id:, client_secret:, user_id:, gpio_pin:)
+    @client_id = client_id
+    @client_secret = client_secret
+    @user_id = user_id
+    @gpio_pin = gpio_pin
+  end
+
+  def update
+    pin.value = streaming?
+  end
+
+  private
+
+  def pin
+    @pin ||= GpioSysfs::Pin.new(gpio_pin)
+  end
+
+  def twitch_client
+    @twitch_client ||= Twitch::Client.new(
+      client_id: client_id,
+      client_secret: client_secret
+    )
+  end
+
+  def streams
+    twitch_client.get_streams(user_id: user_id).data
+  end
+
+  def streaming?
+    streams.any?
+  end
+end
+
+config = YAML.load_file(CONFIG_PATH)
+
+STDOUT.sync = true
+logger = Logger.new(STDOUT)
+
+on_air = OnAir.new(
+  client_id: config["client_id"],
+  client_secret: config["client_secret"],
+  user_id: config["user_id"],
+  gpio_pin: config["gpio_pin"]
+)
+
+loop do
+  updated_value = on_air.update
+  logger.info "Updated sign with #{updated_value}"
+
+  sleep 10
+end

@@ -1,0 +1,49 @@
+GIT
+  remote: https://github.com/mauricew/ruby-twitch-api.git
+  revision: dc2b4f5f0f494a1eb486d1c736e56d9d9bbd4be4
+  specs:
+    twitch-api (0.4.0)
+      faraday (~> 1.0)
+      faraday_middleware (~> 1.0)
+      twitch_oauth2 (~> 0.3.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    faraday (1.8.0)
+      faraday-em_http (~> 1.0)
+      faraday-em_synchrony (~> 1.0)
+      faraday-excon (~> 1.1)
+      faraday-httpclient (~> 1.0.1)
+      faraday-net_http (~> 1.0)
+      faraday-net_http_persistent (~> 1.1)
+      faraday-patron (~> 1.0)
+      faraday-rack (~> 1.0)
+      multipart-post (>= 1.2, < 3)
+      ruby2_keywords (>= 0.0.4)
+    faraday-em_http (1.0.0)
+    faraday-em_synchrony (1.0.0)
+    faraday-excon (1.1.0)
+    faraday-httpclient (1.0.1)
+    faraday-net_http (1.0.1)
+    faraday-net_http_persistent (1.2.0)
+    faraday-patron (1.0.0)
+    faraday-rack (1.0.0)
+    faraday_middleware (1.2.0)
+      faraday (~> 1.0)
+    gpio_sysfs (0.1.0)
+    multipart-post (2.1.1)
+    ruby2_keywords (0.0.5)
+    twitch_oauth2 (0.3.0)
+      faraday (~> 1.0)
+      faraday_middleware (~> 1.0)
+
+PLATFORMS
+  armv7l-linux-eabihf
+
+DEPENDENCIES
+  gpio_sysfs (~> 0.1.0)
+  twitch-api!
+
+BUNDLED WITH
+   2.2.32
