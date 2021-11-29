@@ -1,0 +1,9 @@
+# Create a client_id and a client_secret from https://dev.twitch.tv/docs/authentication#registration.
+client_id: hackme
+client_secret: hackme
+
+# Illuminate the sign when this user ID is streaming.
+user_id: 1234
+
+# Change this if you're not using GPIO 18 to illuminate the sign.
+gpio_pin: 18
